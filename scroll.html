@@ -1,0 +1,159 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		/* http://meyerweb.com/eric/tools/css/reset/ 
+		   v2.0 | 20110126
+		   License: none (public domain)
+		*/
+		html, body, div, span, applet, object, iframe,
+		h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+		a, abbr, acronym, address, big, cite, code,
+		del, dfn, em, img, ins, kbd, q, s, samp,
+		small, strike, strong, sub, sup, tt, var,
+		b, u, i, center,
+		dl, dt, dd, ol, ul, li,
+		fieldset, form, label, legend,
+		table, caption, tbody, tfoot, thead, tr, th, td,
+		article, aside, canvas, details, embed,
+		figure, figcaption, footer, header, hgroup,
+		menu, nav, output, ruby, section, summary,
+		time, mark, audio, video {
+		  margin: 0;
+		  padding: 0;
+		  border: 0;
+		  font-size: 100%;
+		  font: inherit;
+		  vertical-align: baseline; }
+
+		/* HTML5 display-role reset for older browsers */
+		article, aside, details, figcaption, figure,
+		footer, header, hgroup, menu, nav, section {
+		  display: block; }
+
+		body {
+		  line-height: 1; }
+
+		ol, ul {
+		  list-style: none; }
+
+		blockquote, q {
+		  quotes: none; }
+
+		blockquote:before, blockquote:after,
+		q:before, q:after {
+		  content: '';
+		  content: none; }
+
+		table {
+		  border-collapse: collapse;
+		  border-spacing: 0; }
+
+		.timeline-container .slide .fixed-year:after {
+		  content: "";
+		  display: table;
+		  clear: both; }
+
+		.timeline-container {
+		  width: 100%;
+		  min-height: 100vh; }
+		  .timeline-container .slide {
+		    height: 100vh;
+		    width: 100%;
+		    position: relative;
+		    display: block;
+		    overflow: hidden; }
+		    .timeline-container .slide:nth-child(odd) {
+		      background-color: lightblue; }
+		    .timeline-container .slide:nth-child(even) {
+		      background-color: lightyellow; }
+		    .timeline-container .slide .fixed-year {
+		      font-size: 20em;
+		      text-align: center;
+		      position: fixed;
+		      left: 50%;
+		      overflow: hidden;
+		      z-index: 2;
+		      top: 50%;
+		      opacity: 0;
+		      width: 100%;
+		      transform: translate(-50%, -50%);
+		      line-height: 100vh;
+		      margin: 0;
+		      padding: 0;
+		      color: rgba(234, 12, 15, 0.3); }
+
+		.cont {
+		  position: relative;
+		  z-index: 3; }
+
+		/*# sourceMappingURL=style.css.map */
+
+	</style>
+</head>
+<body>
+	
+
+<section class="timeline-container">
+	<figure class="slide inview" >
+		<div class="fixed-year">1852</div>
+
+	</figure>
+	<figure class="slide inview" >
+		<div class="fixed-year">1851</div>
+
+	</figure>
+	<figure class="slide inview">
+		<div class="fixed-year">1850</div>
+	</figure>
+	<figure class="slide inview">
+		<div class="fixed-year">1849</div>
+	</figure>
+	<figure class="slide inview">
+		<div class="fixed-year">1848</div>
+	</figure>
+	<figure class="slide inview">
+		<div class="fixed-year">1847</div>
+	</figure>
+	<figure class="slide inview">
+		<div class="fixed-year">1846</div>
+	</figure>
+	<!-- <figure class="slide">
+		<div class="fixed-year"></div>
+	</figure>
+	<figure class="slide">
+		<div class="fixed-year"></div>
+	</figure>
+	<figure class="slide">
+		<div class="fixed-year"></div>
+	</figure> -->
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script>
+jQuery(function(){
+	var win = $(window);
+	var slide = $('.slide');
+	var fixedYear = slide.find('.fixed-year');
+	var slideHeight = slide.height();
+	var winHeight = win.height();
+	$(window).scroll(function(){
+
+		var inview = $('.inview .fixed-year');
+		inview.css('opacity', 1);
+		inview.each(function(){
+			var ele = $(this).parent();
+			var n = (ele.position().top - win.scrollTop() + ele.height());
+			var i = (n + slide.height());
+			var r = 2 * slide.width();
+				$(this).css({ clip: "rect(" + n + "px " + r + "px " + i + "px auto)" })
+		});
+
+	});
+	
+
+});	
+</script>
+
+</body>
+</html>
